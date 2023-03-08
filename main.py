@@ -1,21 +1,20 @@
-from getHTML import GetHTML
-# def parseHtml(str_html):
-#     from bs4 import BeautifulSoup
+from get_html import GetHTML
+from parse_html import ParseHTML
 
-#     parsed = BeautifulSoup(str_html, 'html.parser')
-#     print(parsed.prettify())
 
-if __name__ == "__main__":
-
+def UserGetHtmlFactory() -> GetHTML:
     while(True):
         url = input('Enter url: ')
-
         htmlObj = GetHTML(url)
-        
-        if(htmlObj.url_for_request):
-            break
+        if(htmlObj.req_url):
+            return htmlObj
         else:
             continue
 
-    htmlStr = htmlObj.GetHtmlStr()
-    print(htmlStr)
+if __name__ == "__main__":
+    Obj = UserGetHtmlFactory()
+    htmlStr = Obj.GetHtmlStr()
+
+    ParseHTML.ParseHtml(htmlStr)
+    
+

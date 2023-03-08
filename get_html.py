@@ -3,15 +3,14 @@ from urllib.request import Request
 class GetHTML:
     req_url = ''
     req_headers={'User-Agent': 'Mozilla/5.0'}
-    req = Request()
+    req = None
 
     def __init__(self, url2valid):
         if GetHTML.ValidateURL(url2valid):
-            self.url_for_request = url2valid
+            self.req_url = url2valid
         else:
             print('Error while constructing. Invalid URL.')
-            return
-        self.req = Request(url=self.req_url, headers=self.req_headers)
+        self.req = Request(url=self.req_url)
         
 
     def GetHtmlStr(self) -> str:
